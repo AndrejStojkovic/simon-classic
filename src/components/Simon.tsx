@@ -1,4 +1,3 @@
-import { click } from '@testing-library/user-event/dist/click';
 import React, { useState, useEffect } from 'react';
 
 type SimonProps = {
@@ -12,7 +11,6 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
   const [playerTurn, setPlayerTurn] = useState(false);
   const [score, setScore] = useState(0);
   const [moves, setMoves] = useState<string[]>([]);
-  const [currentMove, setCurrentMove] = useState('');
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
 
   const randomColor = () => {
@@ -32,7 +30,7 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
       const color = moves[i];
       const colorElement = document.getElementById(color);
   
-      if(i == 0) await wait(delay);
+      if(i === 0) await wait(delay);
       else await wait(delay / 2);
       colorElement?.classList.remove(`bg-${color}-500`);
       colorElement?.classList.add(`bg-${color}-400`);
@@ -58,14 +56,11 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
       setMoves([...moves, randomColor()]);
       return;
     }
-
-    console.log('game over');
     
     gameOver();
   }
 
   const gameOver = () => {
-    setCurrentMove('');
     setCurrentMoveIndex(0);
     setMoves([]);
     setScore(0);
@@ -75,12 +70,14 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
   useEffect(() => {
     if(gameRunning) {
       setMoves([...moves, randomColor()]);
-    } 
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameRunning]);
 
   useEffect(() => {
     displayColors(1000);
     console.log(moves);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moves]);
 
   return (
