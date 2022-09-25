@@ -1,10 +1,16 @@
 import React from 'react';
+import Modal from '../lib/Modal';
 
-const HowToModal = () => {
+type HowToModalProps = {
+  isModalOpen: boolean,
+  handleModalClose: () => void
+}
+
+const HowToModal = ({isModalOpen, handleModalClose}: HowToModalProps) => {
   return (
-    <div>
-
-    </div>
+    <Modal title='How To Play' id='how-to' isModalOpen={isModalOpen} handleModalClose={handleModalClose}>
+      test
+    </Modal>
   )
 }
 

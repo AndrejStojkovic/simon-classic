@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import HowToModal from './HowToModal';
 import { StatsIcon, HelpIcon, ThemeIcon } from '../lib/Icons';
 
 type HeaderProps = {
@@ -7,8 +7,14 @@ type HeaderProps = {
 }
 
 const Header = ({gameRunning}: HeaderProps) => {
+  const [isHowToModalOpen, setIsHowToModalOpen] = useState(false);
+  const handleHowToModalOpen = () => setIsHowToModalOpen(true);
+  const handleHowToModalClose = () => setIsHowToModalOpen(false);
+
   return (
     <div>
+      <HowToModal isModalOpen={isHowToModalOpen} handleModalClose={handleHowToModalClose} />
+
       <div id='logo' className={`flex gap-5 items-center justify-center transition duration-100 ${gameRunning ? 'opacity-0' : 'opacity-100'}`}>
         <div id='simon-logo'>
           <div className='flex justify-center items-center'>
@@ -36,14 +42,15 @@ const Header = ({gameRunning}: HeaderProps) => {
         </div>
       </div>
 
-      <div className='flex gap-2 justify-center items-center mt-5'>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold text-lg transition'>
+      <div className='flex gap-4 justify-center items-center mt-6'>
+        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
+          onClick={() => handleHowToModalOpen}>
           <HelpIcon /> How to Play
         </button>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold text-lg transition'>
+        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'>
           <StatsIcon /> Stats
         </button>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold text-lg transition'>
+        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'>
           <ThemeIcon /> Theme
         </button>
       </div>

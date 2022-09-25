@@ -10,7 +10,7 @@ module.exports = {
       pattern: /(border|bg|text)-(gray|slate|neutral|red|orange|yellow|green|blue|sky|indigo|violet|purple|pink)-(1|2|3|4|5|6|7|8|9)00/
     },
     {
-      pattern: /opacity-(0|100)/
+      pattern: /opacity-[0-100]/
     },
     {
       pattern: /(top|left|right|bottom)-(0|1|2|3|4|5|6|7|8|9|10|12|16|20)/
