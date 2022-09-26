@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getHighScoreLocalStorage, setHighScoreLocalStorage } from '../lib/LocalStorage';
 
 type SimonProps = {
   size: number,
@@ -10,6 +11,7 @@ type SimonProps = {
 const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) => {
   const [playerTurn, setPlayerTurn] = useState(false);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [moves, setMoves] = useState<string[]>([]);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
 
@@ -45,6 +47,8 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
   }
 
   const buttonClick = (moveColor: string) => {
+    if(!playerTurn) return;
+
     if(moveColor === moves[currentMoveIndex] && currentMoveIndex < moves.length - 1) {
       setCurrentMoveIndex(currentMoveIndex + 1);
       return;
@@ -61,11 +65,25 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
   }
 
   const gameOver = () => {
+    if(score > highScore) {
+      setHighScoreLocalStorage(score.toString());
+      setHighScore(score);
+    }
+
     setCurrentMoveIndex(0);
     setMoves([]);
     setScore(0);
     handleGameEnd();
   }
+
+  useEffect(() => {
+    if(getHighScoreLocalStorage() === null) {
+      setHighScoreLocalStorage('0');
+      setHighScore(0);
+    } else {
+      setHighScore(Number(getHighScoreLocalStorage()));
+    }
+  }, []);
 
   useEffect(() => {
     if(gameRunning) {
@@ -115,8 +133,13 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
           Play
         </button>    
       ) : (
-        <div className={`absolute font-semibold text-5xl top-10 left-1/2 transform -translate-x-1/2 transition delay-1000 ${gameRunning ? 'opacity-100' : 'opacity-0'}`}>
-          Score: {score}
+        <div className={`absolute font-semibold top-10 left-1/2 transform text-center -translate-x-1/2 transition delay-1000 ${gameRunning ? 'opacity-100' : 'opacity-0'}`}>
+          <div className='text-3xl'>
+            Highscore: {highScore}
+          </div>
+          <div className='text-5xl'>
+            Score: {score}
+          </div>
         </div>
       )}
       

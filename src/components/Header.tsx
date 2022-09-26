@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HowToModal from './Modals/HowToModal';
 import StatsModal from './Modals/StatsModal';
 import SettingsModal from './Modals/SettingsModal';
-import { StatsIcon, HelpIcon, ThemeIcon, SettingsIcons } from '../lib/Icons';
+import { HelpIcon, ThemeIcon, SettingsIcons } from '../lib/Icons';
 
 type HeaderProps = {
   gameRunning: boolean
@@ -55,19 +55,15 @@ const Header = ({gameRunning}: HeaderProps) => {
       </div>
 
       <div className='flex gap-4 justify-center items-center mt-6'>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
+        <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
           onClick={() => handleHowToModalOpen()}>
           <HelpIcon /> How to Play
         </button>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
-          onClick={() => handleStatsModalOpen()}>
-          <StatsIcon /> Stats
-        </button>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
+        <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
           onClick={() => handleSettingsModalOpen()}>
           <SettingsIcons /> Settings
         </button>
-        <button className='flex items-center bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'>
+        <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'>
           <ThemeIcon /> Theme
         </button>
       </div>
