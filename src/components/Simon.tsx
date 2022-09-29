@@ -36,7 +36,7 @@ const Simon = ({size, gameRunning, handleGameStart, handleGameEnd}: SimonProps) 
       else await wait(delay / 2);
       colorElement?.classList.remove(`bg-${color}-500`);
       colorElement?.classList.add(`bg-${color}-400`);
-  
+
       await wait(delay / 2);
       colorElement?.classList.remove(`bg-${color}-400`);
       colorElement?.classList.add(`bg-${color}-500`);

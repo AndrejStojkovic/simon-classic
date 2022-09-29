@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import HowToModal from './Modals/HowToModal';
-import StatsModal from './Modals/StatsModal';
-import SettingsModal from './Modals/SettingsModal';
-import { HelpIcon, ThemeIcon, SettingsIcons } from '../lib/Icons';
+import { HelpIcon, ThemeIcon } from '../lib/Icons';
 
 type HeaderProps = {
   gameRunning: boolean
@@ -13,19 +11,9 @@ const Header = ({gameRunning}: HeaderProps) => {
   const handleHowToModalOpen = () => setIsHowToModalOpen(true);
   const handleHowToModalClose = () => setIsHowToModalOpen(false);
 
-  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
-  const handleStatsModalOpen = () => setIsStatsModalOpen(true);
-  const handleStatsModalClose = () => setIsStatsModalOpen(false);
-
-  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
-  const handleSettingsModalOpen = () => setIsSettingsModalOpen(true);
-  const handleSettingsModalClose = () => setIsSettingsModalOpen(false);
-
   return (
     <div>
       <HowToModal isModalOpen={isHowToModalOpen} handleModalClose={handleHowToModalClose} />
-      <StatsModal isModalOpen={isStatsModalOpen} handleModalClose={handleStatsModalClose} />
-      <SettingsModal isModalOpen={isSettingsModalOpen} handleModalClose={handleSettingsModalClose} />
 
       <div id='logo' className={`flex gap-5 items-center justify-center transition duration-100 ${gameRunning ? 'opacity-0' : 'opacity-100'}`}>
         <div id='simon-logo'>
@@ -58,10 +46,6 @@ const Header = ({gameRunning}: HeaderProps) => {
         <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
           onClick={() => handleHowToModalOpen()}>
           <HelpIcon /> How to Play
-        </button>
-        <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'
-          onClick={() => handleSettingsModalOpen()}>
-          <SettingsIcons /> Settings
         </button>
         <button className='flex items-center text-black bg-gray-200 hover:bg-gray-300 rounded-md gap-1 py-2 px-4 font-semibold transition'>
           <ThemeIcon /> Theme
