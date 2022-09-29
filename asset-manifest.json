@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/simon-classic/static/css/main.f79094cb.css",
+    "main.js": "/simon-classic/static/js/main.c15c9369.js",
+    "index.html": "/simon-classic/index.html",
+    "main.f79094cb.css.map": "/simon-classic/static/css/main.f79094cb.css.map",
+    "main.c15c9369.js.map": "/simon-classic/static/js/main.c15c9369.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f79094cb.css",
+    "static/js/main.c15c9369.js"
+  ]
+}
