@@ -1,6 +1,6 @@
 <p align="center" style="margin: 0!important">
   <a href="https://github.com/AndrejStojkovic/simon-classic">
-    <img src="/public/favicon.png" alt="Logo">
+    <img src="/misc/logo.png" alt="Logo">
   </a>
 
   <h3 align="center" color="blue">Simon Classic</h3>
